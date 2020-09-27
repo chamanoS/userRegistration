@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
@@ -10,10 +11,8 @@ const app = express();
 //passport config
 require('./config/passport')(passport);
 
-//db config
-const db = require('./config/keys').MongoURI;
 //connect to mongo
-mongoose.connect(db, { useNewUrlParser: true , useUnifiedTopology: true })
+mongoose.connect(process.env.MongoURI, { useNewUrlParser: true , useUnifiedTopology: true })
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
